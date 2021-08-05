@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JokeApp12.Data;
 using JokeApp12.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokeApp12.Controllers
 {
@@ -56,6 +57,8 @@ namespace JokeApp12.Controllers
         }
 
         // GET: Jokes/Create
+
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -78,6 +81,7 @@ namespace JokeApp12.Controllers
         }
 
         // GET: Jokes/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,6 +100,7 @@ namespace JokeApp12.Controllers
         // POST: Jokes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,JokeQuestion,JokeAnswer")] Joke joke)
@@ -129,6 +134,7 @@ namespace JokeApp12.Controllers
         }
 
         // GET: Jokes/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -147,6 +153,7 @@ namespace JokeApp12.Controllers
         }
 
         // POST: Jokes/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
